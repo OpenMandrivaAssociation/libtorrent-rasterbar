@@ -73,7 +73,14 @@ incompatible. This package contains development libraries and headers.
 
 %build
 autoreconf
-%configure2_5x --enable-python-binding --with-asio=system
+%configure2_5x --enable-python-binding \
+	--with-asio=system \
+	--with-boost-libdir=%{_libdir} \
+	--with-boost-system=boost_system-mt \
+	--with-boost-filesystem=boost_filesystem-mt \
+	--with-boost-thread=boost_thread-mt \
+	--with-boost-regex=boost_regex-mt \
+	BOOST_PYTHON_LIB='boost_python-mt'
 %make
 
 %install
