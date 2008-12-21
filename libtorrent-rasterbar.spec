@@ -14,7 +14,6 @@ Patch0:		libtorrent-rasterbar-0.14.1-underlink.patch
 URL:		http://www.rasterbar.com/products/libtorrent/
 Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires:	boost-devel
-BuildRequires:	asio
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
