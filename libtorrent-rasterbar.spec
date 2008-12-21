@@ -29,7 +29,6 @@ incompatible.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library
-Obsoletes:	%libname < %{libname}-%{version}
 
 %description -n %{libname}
 libtorrent-rasterbar is a C++ library that aims to be a good
