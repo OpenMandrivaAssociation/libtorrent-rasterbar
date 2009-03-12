@@ -70,7 +70,7 @@ incompatible. This package contains development libraries and headers.
 %patch0 -p1 -b .underlink
 
 %build
-autoreconf
+autoreconf -fiv
 %configure2_5x --enable-python-binding \
 	--with-asio=system \
 	--with-boost-libdir=%{_libdir} \
