@@ -1,22 +1,22 @@
 %define shortname	torrent-rasterbar
-%define major		1
+%define major		3
 %define libname		%mklibname %{shortname} %{major}
 %define develname	%mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.1
-Release:	%mkrel 4
+Version:	0.14.3
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
+URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://downloads.sourceforge.net/libtorrent/%{name}-%{version}.tar.gz
 Patch0:		libtorrent-rasterbar-0.14.1-underlink.patch
-URL:		http://www.rasterbar.com/products/libtorrent/
-Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
+Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -70,15 +70,20 @@ incompatible. This package contains development libraries and headers.
 %patch0 -p1 -b .underlink
 
 %build
-autoreconf -fiv
-%configure2_5x --enable-python-binding \
+# (tpg) a workaround for libtool crap
+sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
+./autotool.sh
+%configure2_5x \
+	--enable-python-binding \
+	--with-zlib=system \
 	--with-asio=system \
+	--with-ssl \
 	--with-boost-libdir=%{_libdir} \
 	--with-boost-system=boost_system-mt \
 	--with-boost-filesystem=boost_filesystem-mt \
 	--with-boost-thread=boost_thread-mt \
 	--with-boost-regex=boost_regex-mt \
-	BOOST_PYTHON_LIB='boost_python-mt'
+	--with-boost-python=boost_python-mt
 %make
 
 %install
