@@ -6,7 +6,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	0.14.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -29,6 +29,7 @@ incompatible.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library
+Obsoletes:	%{mklibname %{shortname} 1}
 
 %description -n %{libname}
 libtorrent-rasterbar is a C++ library that aims to be a good
