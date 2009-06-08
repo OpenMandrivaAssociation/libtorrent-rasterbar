@@ -1,5 +1,5 @@
 %define shortname	torrent-rasterbar
-%define major		3
+%define major		4
 %define libname		%mklibname %{shortname} %{major}
 %define develname	%mklibname %{shortname} -d
 
