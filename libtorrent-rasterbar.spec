@@ -11,7 +11,7 @@ License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://downloads.sourceforge.net/libtorrent/%{name}-%{version}.tar.gz
-Patch0:		libtorrent-rasterbar-0.14.1-underlink.patch
+Patch0:		libtorrent-rasterbar-0.14.4-underlink.patch
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
