@@ -1,12 +1,12 @@
 %define shortname	torrent-rasterbar
-%define major		4
+%define major		5
 %define libname		%mklibname %{shortname} %{major}
 %define develname	%mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.4
-Release:	%mkrel 2
+Version:	0.14.5
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -43,6 +43,7 @@ incompatible.
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
 %{py_requires}
+Requires:	%{libname} = %{version}-%{release}
 
 %description -n python-%{name}
 libtorrent-rasterbar is a C++ library that aims to be a good
