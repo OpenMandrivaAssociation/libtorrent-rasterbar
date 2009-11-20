@@ -5,17 +5,18 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.6
+Version:	0.14.7
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
-Source0:	http://downloads.sourceforge.net/libtorrent/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/libtorrent/libtorrent-%{version}/%{name}-%{version}.tar.gz
 Patch0:		libtorrent-rasterbar-0.14.4-underlink.patch
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
+BuildRequires:	libgeoip-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -79,6 +80,9 @@ sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configur
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-asio=system \
+	--with-libgeoip=system \
+	--with-encryption=on \
+	--with-dht=on \
 	--with-ssl \
 	--with-boost-libdir=%{_libdir} \
 	--with-boost-system=boost_system-mt \
