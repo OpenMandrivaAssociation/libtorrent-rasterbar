@@ -16,7 +16,7 @@ BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
-BuildRequires:	libgeoip-devel
+#BuildRequires:	libgeoip-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -74,13 +74,13 @@ incompatible. This package contains development libraries and headers.
 
 %build
 # (tpg) a workaround for libtool crap
-sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
-./autotool.sh
+#sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
+#./autotool.sh
 %configure2_5x \
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-asio=system \
-	--with-libgeoip=system \
+	--with-libgeoip=shipped \
 	--with-encryption=on \
 	--with-dht=on \
 	--with-ssl \
