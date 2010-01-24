@@ -16,7 +16,7 @@ BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
-BuildRequires:	libgeoip-devel
+#BuildRequires:	libgeoip-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -84,7 +84,7 @@ rm -rf include/libtorrent/asio*
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-asio=system \
-	--with-libgeoip=system \
+	--with-libgeoip=shipped \
 	--with-encryption=on \
 	--with-dht=on \
 	--with-ssl \
