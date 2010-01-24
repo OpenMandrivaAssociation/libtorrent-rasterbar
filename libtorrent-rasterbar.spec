@@ -5,7 +5,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.7
+Version:	0.14.8
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
@@ -16,7 +16,7 @@ BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
-#BuildRequires:	libgeoip-devel
+BuildRequires:	libgeoip-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -73,14 +73,18 @@ incompatible. This package contains development libraries and headers.
 %patch0 -p1 -b .underlink
 
 %build
+# (from Anssi)  make sure system asio is used as --with-asio=system seems
+# to be ignored with boost < 1.35.0, so just to be sure
+rm -rf include/libtorrent/asio*
+
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
-#./autotool.sh
+./autotool.sh
 %configure2_5x \
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-asio=system \
-	--with-libgeoip=shipped \
+	--with-libgeoip=system \
 	--with-encryption=on \
 	--with-dht=on \
 	--with-ssl \
