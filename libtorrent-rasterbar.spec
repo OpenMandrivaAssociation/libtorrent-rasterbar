@@ -6,7 +6,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	0.14.8
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -79,7 +79,7 @@ rm -rf include/libtorrent/asio*
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
-./autotool.sh
+autoreconf -fi
 %configure2_5x \
 	--enable-python-binding \
 	--with-zlib=system \
