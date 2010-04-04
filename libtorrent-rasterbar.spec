@@ -5,12 +5,12 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.9
+Version:	0.14.10
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
-Source0:	http://downloads.sourceforge.net/libtorrent/libtorrent-%{version}/%{name}-%{version}.tar.gz
+Source0:	http://libtorrent.googlecode.com/files/%{name}-%{version}.tar.gz
 Patch0:		libtorrent-rasterbar-0.14.4-underlink.patch
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
