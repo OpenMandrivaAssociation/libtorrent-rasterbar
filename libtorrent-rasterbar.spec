@@ -1,17 +1,16 @@
 %define shortname	torrent-rasterbar
-%define major		5
+%define major		6
 %define libname		%mklibname %{shortname} %{major}
 %define develname	%mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.14.10
-Release:	%mkrel 3
+Version:	0.15.1
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://libtorrent.googlecode.com/files/%{name}-%{version}.tar.gz
-Patch0:		libtorrent-rasterbar-0.14.4-underlink.patch
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
@@ -70,7 +69,6 @@ incompatible. This package contains development libraries and headers.
 
 %prep
 %setup -q
-%patch0 -p1 -b .underlink
 
 %build
 # (from Anssi)  make sure system asio is used as --with-asio=system seems
@@ -80,7 +78,7 @@ rm -rf include/libtorrent/asio*
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 autoreconf -fi
-%configure2_5x \
+%configure2_5x --disable-static \
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-asio=system \
@@ -125,3 +123,5 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{py_platsitedir}/*.so
 %{py_platsitedir}/*.egg-info
+
+
