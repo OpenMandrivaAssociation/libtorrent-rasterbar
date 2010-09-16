@@ -5,7 +5,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.15.2
+Version:	0.15.3
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
@@ -72,9 +72,6 @@ incompatible. This package contains development libraries and headers.
 %prep
 %setup -q
 %patch0 -p1
-
-# (ahmad) from upstream, fix build with boost-1.44
-sed -i 's,#include <vector>,#include <list>,' include/libtorrent/udp_socket.hpp
 
 %build
 # (tpg) a workaround for libtool crap
