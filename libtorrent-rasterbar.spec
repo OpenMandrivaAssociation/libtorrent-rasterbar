@@ -6,13 +6,11 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	0.15.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://libtorrent.googlecode.com/files/%{name}-%{version}.tar.gz
-# http://bugs.archlinux.org/task/19072?cat=&dev=&sev=4&status=
-Patch0:		disable-valloc.dpatch
 BuildRequires:	boost-devel
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
@@ -71,7 +69,6 @@ incompatible. This package contains development libraries and headers.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 # (tpg) a workaround for libtool crap
@@ -119,5 +116,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{py_platsitedir}/*.so
 %{py_platsitedir}/*.egg-info
-
-
