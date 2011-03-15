@@ -74,6 +74,7 @@ incompatible. This package contains development libraries and headers.
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
+export CFLAGS="%optflags -DBOOST_FILESYSTEM_VERSION=2"
 export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
 %configure2_5x --disable-static \
 	--enable-python-binding \
