@@ -5,7 +5,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.15.8
+Version:	0.15.9
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Libraries
@@ -82,6 +82,7 @@ export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
 	--with-libgeoip=system \
 	--enable-encryption \
 	--enable-dht \
+	--disable-static \
 	--with-boost-libdir=%{_libdir} \
 	--with-boost-system=boost_system-mt \
 	--with-boost-filesystem=boost_filesystem-mt \
@@ -110,7 +111,6 @@ rm -rf %{buildroot}
 %files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/*.so
-%{_libdir}/*.*a
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
 
