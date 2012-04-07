@@ -5,8 +5,8 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.15.9
-Release:	%mkrel 1
+Version:	0.15.10
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -16,7 +16,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	python-devel
 BuildRequires:	libgeoip-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -74,8 +73,8 @@ incompatible. This package contains development libraries and headers.
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
-export CFLAGS="%optflags -DBOOST_FILESYSTEM_VERSION=2"
-export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
+export CFLAGS="%{optflags} -DBOOST_FILESYSTEM_VERSION=2"
+export CXXFLAGS="%{optflags}  -DBOOST_FILESYSTEM_VERSION=2"
 %configure2_5x --disable-static \
 	--enable-python-binding \
 	--with-zlib=system \
@@ -88,33 +87,20 @@ export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
 	--with-boost-filesystem=boost_filesystem-mt \
 	--with-boost-thread=boost_thread-mt \
 	--with-boost-python=boost_python-mt
+
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{name} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{name} -p /sbin/ldconfig
-%endif
-
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_libdir}/*.so
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
 
 %files -n python-%{name}
-%defattr(-,root,root)
 %{py_platsitedir}/*.so
 %{py_platsitedir}/*.egg-info
