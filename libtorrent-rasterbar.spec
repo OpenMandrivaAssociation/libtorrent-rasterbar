@@ -5,7 +5,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.15.10
+Version:	0.16.2
 Release:	1
 License:	BSD
 Group:		System/Libraries
@@ -56,6 +56,7 @@ incompatible. This package contains Python bindings.
 Group:		Development/C
 Summary:	The Rasterbar BitTorrent library's development headers
 Provides:	%{name}-devel = %{version}-%{release}
+Provides:	rb_libtorrent-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 
 %description -n %{develname}
