@@ -1,11 +1,11 @@
 %define shortname	torrent-rasterbar
-%define major		6
+%define major		7
 %define libname		%mklibname %{shortname} %{major}
 %define develname	%mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.16.5
+Version:	0.16.6
 Release:	1
 License:	BSD
 Group:		System/Libraries
