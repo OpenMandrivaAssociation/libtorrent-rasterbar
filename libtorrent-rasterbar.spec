@@ -1,7 +1,7 @@
-%define shortname	torrent-rasterbar
-%define major		7
-%define libname		%mklibname %{shortname} %{major}
-%define develname	%mklibname %{shortname} -d
+%define shortname torrent-rasterbar
+%define major 7
+%define libname %mklibname %{shortname} %{major}
+%define develname %mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
