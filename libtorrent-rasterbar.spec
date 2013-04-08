@@ -75,18 +75,14 @@ incompatible. This package contains development libraries and headers.
 #autoreconf -fi
 export CFLAGS="%{optflags} -DBOOST_FILESYSTEM_VERSION=2"
 export CXXFLAGS="%{optflags}  -DBOOST_FILESYSTEM_VERSION=2"
-%configure2_5x --disable-static \
+%configure2_5x \
+	--disable-static \
 	--enable-python-binding \
 	--with-zlib=system \
 	--with-libgeoip=system \
 	--enable-encryption \
 	--enable-dht \
-	--disable-static \
-	--with-boost-libdir=%{_libdir} \
-	--with-boost-system=boost_system-mt \
-	--with-boost-filesystem=boost_filesystem-mt \
-	--with-boost-thread=boost_thread-mt \
-	--with-boost-python=boost_python-mt
+	--with-boost-libdir=%{_libdir}
 
 %make
 
