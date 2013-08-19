@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   libtorrent-rasterbar-0.16.9.tar.gz: 4335c8b275f041d6d34a493b21f2d7234ffca34b
+sources:
+  libtorrent-rasterbar-0.16.11.tar.gz: accf70b2ddc5ab048a35c6dc3ef20718a67833f5
