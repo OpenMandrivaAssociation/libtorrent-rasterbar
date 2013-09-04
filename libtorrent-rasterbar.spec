@@ -12,6 +12,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://libtorrent.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRequires:	boost-devel
+BuildRequires:	python-devel
 BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
@@ -40,7 +41,6 @@ incompatible.
 %package -n python-%{name}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
-%{py_requires}
 Requires:	%{libname} = %{version}-%{release}
 
 %description -n python-%{name}
