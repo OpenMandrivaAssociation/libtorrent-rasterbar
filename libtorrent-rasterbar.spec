@@ -1,12 +1,12 @@
 %define shortname torrent-rasterbar
-%define major 7
+%define major 8
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	0.16.16
-Release:	3
+Version:	1.0.2
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -73,8 +73,7 @@ incompatible. This package contains development libraries and headers.
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
-export CFLAGS="%{optflags} -DBOOST_FILESYSTEM_VERSION=2"
-export CXXFLAGS="%{optflags}  -DBOOST_FILESYSTEM_VERSION=2"
+export PYTHON=/usr/bin/python2
 %configure2_5x \
 	--disable-static \
 	--enable-python-binding \
@@ -98,5 +97,5 @@ export CXXFLAGS="%{optflags}  -DBOOST_FILESYSTEM_VERSION=2"
 %{_libdir}/pkgconfig/%{name}.pc
 
 %files -n python-%{name}
-%{py_platsitedir}/*.so
-%{py_platsitedir}/*.egg-info
+%{py2_platsitedir}/*.so
+%{py2_platsitedir}/*.egg-info
