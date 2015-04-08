@@ -5,8 +5,8 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.0.2
-Release:	2
+Version:	1.0.4
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -73,8 +73,8 @@ incompatible. This package contains development libraries and headers.
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
-export PYTHON=/usr/bin/python2
-%configure2_5x \
+export PYTHON=%{__python2}
+%configure \
 	--disable-static \
 	--enable-python-binding \
 	--with-zlib=system \
