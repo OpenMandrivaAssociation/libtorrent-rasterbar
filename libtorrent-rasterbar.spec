@@ -6,13 +6,13 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	http://libtorrent.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRequires:	boost-devel
-BuildRequires:	python-devel
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
@@ -38,12 +38,14 @@ other libtorrent, as used by the 'rtorrent' application, that is in
 the 'libtorrent' package. The two are completely different and
 incompatible.
 
-%package -n python-%{name}
+%package -n python2-%{name}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
 Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	python-%{name} < 1.0.4-2
+Provides:	python-%{name} = 1.0.4-2
 
-%description -n python-%{name}
+%description -n python2-%{name}
 libtorrent-rasterbar is a C++ library that aims to be a good
 alternative to all the other bittorrent implementations around. It is
 a library and not a full featured client. It is not the same as the
@@ -96,6 +98,6 @@ export PYTHON=%{__python2}
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
 
-%files -n python-%{name}
+%files -n python2-%{name}
 %{py2_platsitedir}/*.so
 %{py2_platsitedir}/*.egg-info
