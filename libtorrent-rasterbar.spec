@@ -2,6 +2,7 @@
 %define major 8
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
+%define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
