@@ -6,7 +6,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.0.7
+Version:	1.0.9
 Release:	1
 License:	BSD
 Group:		System/Libraries
