@@ -73,6 +73,13 @@ incompatible. This package contains development libraries and headers.
 %setup -q
 
 %build
+
+%ifarch %ix86
+# build segfaults with clang 3.8 on i586
+export CC=gcc
+export CXX=g++
+%endif
+
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
