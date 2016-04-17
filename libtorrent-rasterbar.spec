@@ -1,17 +1,17 @@
 %define shortname torrent-rasterbar
-%define major 8
+%define major 9
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
 %define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.0.9
+Version:	1.1.0
 Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
-Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g')/libtorrent-rasterbar-%{version}.tar.gz
+Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 BuildRequires:	boost-devel
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(geoip)
@@ -92,7 +92,7 @@ export PYTHON=%{__python2}
 	--enable-encryption \
 	--enable-dht \
 	--with-boost-libdir=%{_libdir}
-
+sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
 %make
 
 %install
