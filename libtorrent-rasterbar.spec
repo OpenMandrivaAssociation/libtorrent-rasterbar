@@ -13,6 +13,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 BuildRequires:	boost-devel
+BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(geoip)
