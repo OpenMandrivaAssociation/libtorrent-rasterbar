@@ -6,7 +6,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.1.1
+Version:	1.1.6
 Release:	1
 License:	BSD
 Group:		System/Libraries
@@ -76,11 +76,10 @@ incompatible. This package contains development libraries and headers.
 
 %build
 
-%ifarch %ix86
-# build segfaults with clang 3.8 on i586
+# build segfaults with clang 5.0 on i586 and x86_64
 export CC=gcc
 export CXX=g++
-%endif
+
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
