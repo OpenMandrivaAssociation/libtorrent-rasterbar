@@ -6,13 +6,15 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.1.1
+Version:	1.1.6
 Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 BuildRequires:	boost-devel
+BuildRequires:	boost-core-devel
+BuildRequires:	boost-align-devel
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
@@ -74,11 +76,10 @@ incompatible. This package contains development libraries and headers.
 
 %build
 
-%ifarch %ix86
-# build segfaults with clang 3.8 on i586
+# build segfaults with clang 5.0 on i586 and x86_64
 export CC=gcc
 export CXX=g++
-%endif
+
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
