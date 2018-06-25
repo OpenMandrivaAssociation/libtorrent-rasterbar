@@ -80,8 +80,8 @@ incompatible. This package contains development libraries and headers.
 %build
 
 # build segfaults with clang 5.0 on i586 and x86_64
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
@@ -97,7 +97,7 @@ export CXXFLAGS="%{optflags} -std=c++11"
 	--enable-dht \
 	--with-boost-libdir=%{_libdir}
 sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
-%make
+%make LDFLAGS="$LDFLAGS -lboost_python" -lboost_system"
 
 %install
 %makeinstall_std
