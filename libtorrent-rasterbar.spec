@@ -12,6 +12,7 @@ License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
+Patch0:		3a1b0f1abb1d7774db6037a2667b114905a464cc.patch
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
@@ -73,18 +74,19 @@ incompatible. This package contains development libraries and headers.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 
 # build segfaults with clang 5.0 on i586 and x86_64
-export CC=gcc
-export CXX=g++
-
+#export CC=gcc
+#export CXX=g++
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
 export PYTHON=%{__python2}
+export CXXFLAGS="%{optflags} -std=c++11"
 %configure \
 	--disable-static \
 	--enable-python-binding \
