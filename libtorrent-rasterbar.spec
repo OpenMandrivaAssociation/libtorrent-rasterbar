@@ -2,6 +2,7 @@
 %define major 9
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
+# Temporary workaroud for fix build for rasterbar 1.17. (penguin)
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
@@ -14,6 +15,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 Patch0:		3a1b0f1abb1d7774db6037a2667b114905a464cc.patch
+# This should be fixed in new upstream. For now we need this patch. Feel free to test build without patch in upcoming rasterbar 1.18 (penguin).
 Patch1:		build-fix-with-boost.patch
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
@@ -81,8 +83,9 @@ incompatible. This package contains development libraries and headers.
 %build
 
 # build segfaults with clang 5.0 on i586 and x86_64
-#export CC=gcc
-#export CXX=g++
+# clang 7 on cooker failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
+export CC=gcc
+export CXX=g++
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
