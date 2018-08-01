@@ -3,20 +3,20 @@
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
 # Temporary workaroud for fix build for rasterbar 1.17. (penguin)
-%define _disable_ld_no_undefined 1
+#define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.1.7
-Release:	2
+Version:	1.1.9
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 Patch0:		3a1b0f1abb1d7774db6037a2667b114905a464cc.patch
 # This should be fixed in new upstream. For now we need this patch. Feel free to test build without patch in upcoming rasterbar 1.18 (penguin).
-Patch1:		build-fix-with-boost.patch
+#Patch1:		build-fix-with-boost.patch
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
