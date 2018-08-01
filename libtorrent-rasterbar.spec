@@ -9,7 +9,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	1.1.7
-Release:	1
+Release:	2
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -82,10 +82,10 @@ incompatible. This package contains development libraries and headers.
 
 %build
 
-# build segfaults with clang 5.0 on i586 and x86_64
-# clang 7 on cooker failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
-#export CC=gcc
-#export CXX=g++
+# LX3 build segfaults with clang 5.0 on i586 and x86_64
+# Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
+export CC=gcc
+export CXX=g++
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
