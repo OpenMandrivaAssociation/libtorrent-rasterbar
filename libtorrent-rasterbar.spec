@@ -14,7 +14,7 @@ License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
-#Disabled. Not needed anymore. Fixed in upstream.
+# Disabled. Not needed anymore. Fixed in upstream.
 #Patch0:		3a1b0f1abb1d7774db6037a2667b114905a464cc.patch
 # Disabled. Fixed in upstream. Needed only on pre 1.1.6 and 1.1.7 releases. Fixed in 1.1.8 or 1.1.9 (penguin).
 #Patch1:		build-fix-with-boost.patch
@@ -26,7 +26,6 @@ BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	atomic-devel
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -92,7 +91,7 @@ incompatible. This package contains development libraries and headers.
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
-#export PYTHON=%{__python2}
+export PYTHON=%{__python2}
 export CXXFLAGS="%{optflags} -std=c++11"
 %configure \
 	--disable-static \
