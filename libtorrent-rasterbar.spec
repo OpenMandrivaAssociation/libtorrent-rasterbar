@@ -2,14 +2,14 @@
 %define major 9
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
-# Temporary workaroud for fix build for rasterbar 1.17/19. (penguin)
+# Temporary workaroud for fix build for rasterbar 1.1.7/1.9. (penguin)
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.1.10
-Release:	2
+Version:	1.1.11
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
