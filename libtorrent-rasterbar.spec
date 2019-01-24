@@ -104,7 +104,7 @@ export CXXFLAGS="%{optflags} -std=c++11"
 	--enable-encryption \
 	--enable-dht \
 	--with-boost-libdir=%{_libdir}
-sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
+#sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
 %make
 
 %install
