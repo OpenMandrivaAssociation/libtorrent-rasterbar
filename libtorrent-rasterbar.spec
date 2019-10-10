@@ -92,7 +92,7 @@ export CXX=g++
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
 export PYTHON=%{__python2}
-export CXXFLAGS="%{optflags} -std=c++11"
+export CXXFLAGS="%{optflags} -std=c++14"
 %configure \
 	--disable-static \
 	--enable-python-binding \
