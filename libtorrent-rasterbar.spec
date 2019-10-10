@@ -9,7 +9,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	1.2.2
-Release:	1
+Release:	2
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -83,16 +83,16 @@ incompatible. This package contains development libraries and headers.
 # LX3 build segfaults with clang 5.0 on i586 and x86_64
 # Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
 
-%ifarch %{ix86}
-export CC=gcc
-export CXX=g++
-%endif
+#ifarch %{ix86}
+#export CC=gcc
+#export CXX=g++
+#endif
 
 # (tpg) a workaround for libtool crap
 #sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
 #autoreconf -fi
 export PYTHON=%{__python2}
-export CXXFLAGS="%{optflags} -std=c++11"
+export CXXFLAGS="%{optflags} -std=c++14"
 %configure \
 	--disable-static \
 	--enable-python-binding \
