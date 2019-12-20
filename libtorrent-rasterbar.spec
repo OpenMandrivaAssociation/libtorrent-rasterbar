@@ -44,12 +44,27 @@ other libtorrent, as used by the 'rtorrent' application, that is in
 the 'libtorrent' package. The two are completely different and
 incompatible.
 
+%package -n python-%{name}
+Group:		System/Libraries
+Summary:	The Rasterbar BitTorrent library's Python bindings
+Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	python-%{name} < 1.0.4-2
+Provides:	python-%{name} = %EVR
+
+%description -n python-%{name}
+libtorrent-rasterbar is a C++ library that aims to be a good
+alternative to all the other bittorrent implementations around. It is
+a library and not a full featured client. It is not the same as the
+other libtorrent, as used by the 'rtorrent' application, that is in
+the 'libtorrent' package. The two are completely different and
+incompatible. This package contains Python bindings.
+
 %package -n python2-%{name}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
 Requires:	%{libname} = %{version}-%{release}
 Obsoletes:	python-%{name} < 1.0.4-2
-Provides:	python-%{name} = 1.0.4-2
+Provides:	python2-%{name} = %EVR
 
 %description -n python2-%{name}
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -140,6 +155,11 @@ popd
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
 
+
+%files -n python-%{name}
+%{py_platsitedir}/*.so
+%{py_platsitedir}/*.egg-info
+
 %files -n python2-%{name}
-#{py2_platsitedir}/*.so
-#{py2_platsitedir}/*.egg-info
+%{py2_platsitedir}/*.so
+%{py2_platsitedir}/*.egg-info
