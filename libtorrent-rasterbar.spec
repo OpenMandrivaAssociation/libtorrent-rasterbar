@@ -138,5 +138,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_libdir}/pkgconfig/%{name}.pc
 
 %files -n python2-%{name}
-%{py2_platsitedir}/*.so
-%{py2_platsitedir}/*.egg-info
+#{py2_platsitedir}/*.so
+#{py2_platsitedir}/*.egg-info
