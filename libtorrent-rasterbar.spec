@@ -127,6 +127,9 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %make_build
 
 %install
+pushd ../build-python2/bindings/python
+%python_install
+popd
 %make_install
 
 %files -n %{libname}
