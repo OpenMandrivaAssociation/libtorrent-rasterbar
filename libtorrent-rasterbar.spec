@@ -78,7 +78,13 @@ incompatible. This package contains development libraries and headers.
 %setup -q
 %apply_patches
 
+mkdir -p build-aux
+touch build-aux/config.rpath
+
+cp -r . ../build-python2
+
 %build
+pushd ../build-python2
 
 # LX3 build segfaults with clang 5.0 on i586 and x86_64
 # Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
@@ -102,6 +108,22 @@ export CXXFLAGS="%{optflags} -std=c++14"
 	--enable-dht \
 	--with-boost-libdir=%{_libdir}
 #sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
+%make_build
+
+popd
+
+export PYTHON=%{__python}
+
+export CXXFLAGS="%{optflags} -std=c++14"
+%configure \
+	--disable-static \
+	--enable-python-binding \
+	--with-zlib=system \
+	--with-libgeoip=system \
+	--enable-encryption \
+	--enable-dht \
+	--with-boost-libdir=%{_libdir}
+
 %make_build
 
 %install
