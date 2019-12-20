@@ -8,8 +8,8 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.2.2
-Release:	2
+Version:	1.2.3
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -44,12 +44,27 @@ other libtorrent, as used by the 'rtorrent' application, that is in
 the 'libtorrent' package. The two are completely different and
 incompatible.
 
+%package -n python-%{name}
+Group:		System/Libraries
+Summary:	The Rasterbar BitTorrent library's Python bindings
+Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	python-%{name} < 1.0.4-2
+Provides:	python-%{name} = %EVR
+
+%description -n python-%{name}
+libtorrent-rasterbar is a C++ library that aims to be a good
+alternative to all the other bittorrent implementations around. It is
+a library and not a full featured client. It is not the same as the
+other libtorrent, as used by the 'rtorrent' application, that is in
+the 'libtorrent' package. The two are completely different and
+incompatible. This package contains Python bindings.
+
 %package -n python2-%{name}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
 Requires:	%{libname} = %{version}-%{release}
 Obsoletes:	python-%{name} < 1.0.4-2
-Provides:	python-%{name} = 1.0.4-2
+Provides:	python2-%{name} = %EVR
 
 %description -n python2-%{name}
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -78,7 +93,13 @@ incompatible. This package contains development libraries and headers.
 %setup -q
 %apply_patches
 
+mkdir -p build-aux
+touch build-aux/config.rpath
+
+cp -r . ../build-python2
+
 %build
+pushd ../build-python2
 
 # LX3 build segfaults with clang 5.0 on i586 and x86_64
 # Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
@@ -104,7 +125,26 @@ export CXXFLAGS="%{optflags} -std=c++14"
 #sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
 %make_build
 
+popd
+
+export PYTHON=%{__python}
+
+export CXXFLAGS="%{optflags} -std=c++14"
+%configure \
+	--disable-static \
+	--enable-python-binding \
+	--with-zlib=system \
+	--with-libgeoip=system \
+	--enable-encryption \
+	--enable-dht \
+	--with-boost-libdir=%{_libdir}
+
+%make_build
+
 %install
+pushd ../build-python2/bindings/python
+%make_install
+popd
 %make_install
 
 %files -n %{libname}
@@ -114,6 +154,11 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_libdir}/*.so
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
+
+
+%files -n python-%{name}
+%{py_platsitedir}/*.so
+%{py_platsitedir}/*.egg-info
 
 %files -n python2-%{name}
 %{py2_platsitedir}/*.so
