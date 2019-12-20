@@ -128,7 +128,7 @@ export CXXFLAGS="%{optflags} -std=c++14"
 
 %install
 pushd ../build-python2/bindings/python
-%python_install
+%make_install
 popd
 %make_install
 
