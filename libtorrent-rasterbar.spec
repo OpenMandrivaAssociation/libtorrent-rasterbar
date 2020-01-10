@@ -91,7 +91,7 @@ incompatible. This package contains development libraries and headers.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 mkdir -p build-aux
 touch build-aux/config.rpath
