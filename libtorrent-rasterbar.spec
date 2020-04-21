@@ -105,8 +105,8 @@ pushd ../build-python2
 # Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
 
 #ifarch %{ix86}
-#export CC=gcc
-#export CXX=g++
+export CC=gcc
+export CXX=g++
 #endif
 
 # (tpg) a workaround for libtool crap
