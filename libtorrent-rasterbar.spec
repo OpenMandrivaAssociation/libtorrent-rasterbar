@@ -8,7 +8,7 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	1.2.3
+Version:	1.2.6
 Release:	1
 License:	BSD
 Group:		System/Libraries
@@ -105,6 +105,7 @@ pushd ../build-python2
 # Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
 
 #ifarch %{ix86}
+#global ldflags %{ldflags} -fuse-ld=gold
 #export CC=gcc
 #export CXX=g++
 #endif
