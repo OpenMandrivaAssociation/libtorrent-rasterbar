@@ -4,7 +4,7 @@
 %define develname %mklibname %{shortname} -d
 # Temporary workaroud for fix build for rasterbar 1.1.7/1.9. (penguin)
 %define _disable_ld_no_undefined 1
-%define _disable_lto 1
+#define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
