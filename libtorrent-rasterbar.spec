@@ -155,6 +155,7 @@ popd
 %{_libdir}/*.so
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
 
 %files -n python-%{name}
