@@ -15,6 +15,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 
+BuildRequires:  meson
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
@@ -115,38 +116,24 @@ pushd ../build-python2
 #autoreconf -fi
 export PYTHON=%{__python2}
 export CXXFLAGS="%{optflags} -std=c++14"
-%configure \
-	--disable-static \
-	--enable-python-binding \
-	--with-zlib=system \
-	--with-libgeoip=system \
-	--enable-encryption \
-	--enable-dht \
-	--with-boost-libdir=%{_libdir}
-#sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
-%make_build
+%meson
+
+%meson_build
 
 popd
 
 export PYTHON=%{__python}
 
 export CXXFLAGS="%{optflags} -std=c++14"
-%configure \
-	--disable-static \
-	--enable-python-binding \
-	--with-zlib=system \
-	--with-libgeoip=system \
-	--enable-encryption \
-	--enable-dht \
-	--with-boost-libdir=%{_libdir}
+%meson
 
-%make_build
+%meson_build
 
 %install
 pushd ../build-python2/bindings/python
-%make_install
+%meson_install
 popd
-%make_install
+%meson_install
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
