@@ -1,5 +1,5 @@
 %define shortname torrent-rasterbar
-%define major 2.0
+%define major 2
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
 # Temporary workaroud for fix build for rasterbar 1.1.7/1.9. (penguin)
@@ -100,14 +100,15 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %make_install -C build
 
 %files -n %{libname}
-#{_libdir}/*.so.%{major}*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-#{_libdir}/*.so
+%{_libdir}/*.so
 %{_includedir}/libtorrent
-#{_libdir}/pkgconfig/%{name}.pc
+%{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
+%{_datadir}/cmake/LibtorrentRasterbar/LibtorrentRasterbar*
 
 %files -n python-%{name}
-#{py_platsitedir}/*.so
-#{py_platsitedir}/*.egg-info
+%{python3_sitearch}*.so
+%{python3_sitearch}/libtorrent.egg-info/*
