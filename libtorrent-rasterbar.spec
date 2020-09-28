@@ -111,5 +111,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 
 
 %files -n python-%{name}
-#{python3_sitearch}*.so
+%{python3_sitearch}/libtorrent.cpython-*.so
 %{python3_sitearch}/libtorrent.egg-info/*
