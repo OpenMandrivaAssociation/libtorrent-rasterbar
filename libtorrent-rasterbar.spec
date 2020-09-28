@@ -90,7 +90,6 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="/usr" \
-    -DCMAKE_INSTALL_LIBDIR="lib" \
     -Dpython-bindings=ON \
     -Dboost-python-module-name="python"
 
