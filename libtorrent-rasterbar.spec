@@ -15,7 +15,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 
-BuildRequires: cmake
+BuildRequires:  cmake
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
@@ -60,21 +60,6 @@ other libtorrent, as used by the 'rtorrent' application, that is in
 the 'libtorrent' package. The two are completely different and
 incompatible. This package contains Python bindings.
 
-%package -n python2-%{name}
-Group:		System/Libraries
-Summary:	The Rasterbar BitTorrent library's Python bindings
-Requires:	%{libname} = %{version}-%{release}
-Obsoletes:	python-%{name} < 1.0.4-2
-Provides:	python2-%{name} = %EVR
-
-%description -n python2-%{name}
-libtorrent-rasterbar is a C++ library that aims to be a good
-alternative to all the other bittorrent implementations around. It is
-a library and not a full featured client. It is not the same as the
-other libtorrent, as used by the 'rtorrent' application, that is in
-the 'libtorrent' package. The two are completely different and
-incompatible. This package contains Python bindings.
-
 %package -n %{develname}
 Group:		Development/C
 Summary:	The Rasterbar BitTorrent library's development headers
@@ -97,29 +82,6 @@ incompatible. This package contains development libraries and headers.
 mkdir -p build-aux
 touch build-aux/config.rpath
 
-cp -r . ../build-python2
-
-%build
-pushd ../build-python2
-
-# LX3 build segfaults with clang 5.0 on i586 and x86_64
-# Cooker/LX4 clang 7 failed for i686, just for it revert to gcc. Other arch stay with clang. (penguin)
-
-#ifarch %{ix86}
-#global ldflags %{ldflags} -fuse-ld=gold
-#export CC=gcc
-#export CXX=g++
-#endif
-
-# (tpg) a workaround for libtool crap
-#sed -i 's/AC_CONFIG_MACRO_DIR(\[m4\])/dnl AC_CONFIG_MACRO_DIR(\[m4\])/' configure.in
-#autoreconf -fi
-export PYTHON=%{__python2}
-export CXXFLAGS="%{optflags} -std=c++14"
-%cmake
-%make_build
-
-popd
 
 export PYTHON=%{__python}
 
@@ -129,9 +91,7 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %make_build
 
 %install
-pushd ../build-python2/bindings/python
-%make_install -C build
-popd
+
 %make_install -C build
 
 %files -n %{libname}
@@ -143,11 +103,6 @@ popd
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
-
 %files -n python-%{name}
 %{py_platsitedir}/*.so
 %{py_platsitedir}/*.egg-info
-
-%files -n python2-%{name}
-%{py2_platsitedir}/*.so
-%{py2_platsitedir}/*.egg-info
