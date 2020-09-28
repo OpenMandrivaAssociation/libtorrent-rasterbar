@@ -104,10 +104,11 @@ export CXXFLAGS="%{optflags} -std=c++14"
 
 %files -n %{develname}
 %{_libdir}/*.so
+%{_libdir}/cmake/LibtorrentRasterbar/LibtorrentRasterbar*
 %{_includedir}/libtorrent
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
-%{_datadir}/cmake/LibtorrentRasterbar/LibtorrentRasterbar*
+
 
 %files -n python-%{name}
 #{python3_sitearch}*.so
