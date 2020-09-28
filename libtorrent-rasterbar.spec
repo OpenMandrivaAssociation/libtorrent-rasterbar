@@ -86,7 +86,12 @@ touch build-aux/config.rpath
 export PYTHON=%{__python}
 
 export CXXFLAGS="%{optflags} -std=c++14"
-%cmake
+%cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="/usr" \
+    -DCMAKE_INSTALL_LIBDIR="lib" \
+    -Dpython-bindings=ON \
+    -Dboost-python-module-name="python"
 
 %make_build
 
