@@ -15,6 +15,7 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 
+BuildRequires: cmake
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
@@ -115,15 +116,7 @@ pushd ../build-python2
 #autoreconf -fi
 export PYTHON=%{__python2}
 export CXXFLAGS="%{optflags} -std=c++14"
-%configure \
-	--disable-static \
-	--enable-python-binding \
-	--with-zlib=system \
-	--with-libgeoip=system \
-	--enable-encryption \
-	--enable-dht \
-	--with-boost-libdir=%{_libdir}
-#sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
+%cmake
 %make_build
 
 popd
@@ -131,22 +124,15 @@ popd
 export PYTHON=%{__python}
 
 export CXXFLAGS="%{optflags} -std=c++14"
-%configure \
-	--disable-static \
-	--enable-python-binding \
-	--with-zlib=system \
-	--with-libgeoip=system \
-	--enable-encryption \
-	--enable-dht \
-	--with-boost-libdir=%{_libdir}
+%cmake
 
 %make_build
 
 %install
 pushd ../build-python2/bindings/python
-%make_install
+%make_install -C build
 popd
-%make_install
+%make_install -C build
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
