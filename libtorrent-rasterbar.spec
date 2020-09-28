@@ -24,6 +24,7 @@ BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:  python3dist(setuptools)
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
