@@ -104,9 +104,9 @@ export CXXFLAGS="%{optflags} -std=c++14"
 #{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%{_libdir}/*.so
+#{_libdir}/*.so
 %{_includedir}/libtorrent
-%{_libdir}/pkgconfig/%{name}.pc
+#{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
 %files -n python-%{name}
