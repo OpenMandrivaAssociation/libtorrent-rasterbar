@@ -1,5 +1,5 @@
 %define shortname torrent-rasterbar
-%define major 10
+%define major 2.0
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
 # Temporary workaroud for fix build for rasterbar 1.1.7/1.9. (penguin)
