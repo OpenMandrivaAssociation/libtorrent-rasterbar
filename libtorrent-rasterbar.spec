@@ -104,5 +104,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
 %files -n python-%{name}
-%{py_platsitedir}/*.so
-%{py_platsitedir}/*.egg-info
+#{py_platsitedir}/*.so
+#{py_platsitedir}/*.egg-info
