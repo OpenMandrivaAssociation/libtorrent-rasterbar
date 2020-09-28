@@ -101,7 +101,7 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %make_install -C build
 
 %files -n %{libname}
-%{_libdir}/*.so.%{major}*
+#{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %{_libdir}/*.so
