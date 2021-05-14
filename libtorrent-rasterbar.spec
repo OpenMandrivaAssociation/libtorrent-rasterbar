@@ -4,7 +4,6 @@
 %define develname %mklibname %{shortname} -d
 # Temporary workaroud for fix build for rasterbar 1.1.7/1.9. (penguin)
 %define _disable_ld_no_undefined 1
-#define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
@@ -14,8 +13,7 @@ License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
-
-BuildRequires:  cmake
+BuildRequires:	cmake
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
@@ -24,7 +22,7 @@ BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:  python3dist(setuptools)
+BuildRequires:	python3dist(setuptools)
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -37,6 +35,7 @@ incompatible.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library
+Group:		System/Libraries
 
 %description -n %{libname}
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -51,7 +50,7 @@ Group:		System/Libraries
 Summary:	The Rasterbar BitTorrent library's Python bindings
 Requires:	%{libname} = %{version}-%{release}
 Obsoletes:	python-%{name} < 1.0.4-2
-Provides:	python-%{name} = %EVR
+Provides:	python-%{name} = %{EVRD}
 
 %description -n python-%{name}
 libtorrent-rasterbar is a C++ library that aims to be a good
@@ -77,15 +76,13 @@ the 'libtorrent' package. The two are completely different and
 incompatible. This package contains development libraries and headers.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 mkdir -p build-aux
 touch build-aux/config.rpath
 
-
+%build
 export PYTHON=%{__python}
-
 export CXXFLAGS="%{optflags} -std=c++14"
 %cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -96,7 +93,6 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %make_build
 
 %install
-
 %make_install -C build
 
 %files -n %{libname}
@@ -109,7 +105,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
-
 %files -n python-%{name}
 %{python3_sitearch}/libtorrent.cpython-*.so
-#{python3_sitearch}/libtorrent.egg-info/*
