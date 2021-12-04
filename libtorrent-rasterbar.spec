@@ -7,13 +7,12 @@
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
-Version:	2.0.4
-Release:	2
+Version:	2.0.5
+Release:	1
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
-Patch0:     https://patch-diff.githubusercontent.com/raw/arvidn/libtorrent/pull/6412.patch
 
 BuildRequires:	cmake
 BuildRequires:	boost-devel
