@@ -14,6 +14,9 @@ Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 
+# Upstream patch to fix build with boost 1.78
+Patch0: https://patch-diff.githubusercontent.com/raw/arvidn/libtorrent/pull/6597.patch
+
 BuildRequires:	cmake
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
