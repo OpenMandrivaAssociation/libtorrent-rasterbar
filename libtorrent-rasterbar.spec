@@ -8,7 +8,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	2.0.5
-Release:	2
+Release:	3
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -26,6 +26,7 @@ BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:  pkgconfig(python)
 BuildRequires:	python3dist(setuptools)
 
 %description
@@ -92,7 +93,9 @@ export CXXFLAGS="%{optflags} -std=c++14"
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="/usr" \
     -Dpython-bindings=ON \
-    -Dboost-python-module-name="python"
+    -Dboost-python-module-name="python" \
+	-Dpython-egg-info=ON \
+	-Dpython-install-system-dir=ON
 
 %make_build
 
@@ -110,4 +113,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
 %files -n python-%{name}
-%{python3_sitearch}/libtorrent.cpython-*.so
+%{python_sitearch}/libtorrent.cpython-*.so
+%{python_sitearch}/*.egg-info
