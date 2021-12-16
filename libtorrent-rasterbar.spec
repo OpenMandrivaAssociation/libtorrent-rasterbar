@@ -113,5 +113,5 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %{_datadir}/cmake/Modules/FindLibtorrentRasterbar.cmake
 
 %files -n python-%{name}
-%{python3_sitearch}/libtorrent.cpython-*.so
-%{python3_sitearch}/*.egg-info
+%{python_sitearch}/libtorrent.cpython-*.so
+#{python3_sitearch}/*.egg-info
