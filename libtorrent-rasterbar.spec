@@ -102,6 +102,9 @@ export CXXFLAGS="%{optflags} -std=c++14"
 %install
 %make_install -C build
 
+#Fix for python
+sed -i 's/^Version:.*/Version: %{version}/' %{buildroot}%{python_sitearch}/libtorrent.egg-info/PKG-INFO
+
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
 
@@ -114,5 +117,4 @@ export CXXFLAGS="%{optflags} -std=c++14"
 
 %files -n python-%{name}
 %{python_sitearch}/libtorrent.cpython-*.so
-%{python_sitearch}/libtorrent.egg-info/PKG-INFO
-%{python_sitearch}/libtorrent.egg-info/
+%{python_sitearch}/libtorrent.egg-info
