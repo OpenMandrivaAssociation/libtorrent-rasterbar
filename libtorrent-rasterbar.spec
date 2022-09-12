@@ -8,7 +8,7 @@
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
 Version:	2.0.7
-Release:	2
+Release:	3
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.rasterbar.com/products/libtorrent/
@@ -21,13 +21,12 @@ BuildRequires:	cmake
 BuildRequires:	boost-devel
 BuildRequires:	boost-core-devel
 BuildRequires:	boost-align-devel
-BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(geoip)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:  pkgconfig(python)
-BuildRequires:	python3dist(setuptools)
+BuildRequires:  pkgconfig(python3)
+BuildRequires:	python%{pyver}dist(setuptools)
 
 %description
 libtorrent-rasterbar is a C++ library that aims to be a good
