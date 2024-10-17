@@ -11,7 +11,7 @@ Version:	2.0.10
 Release:	3
 License:	BSD
 Group:		System/Libraries
-URL:		http://www.rasterbar.com/products/libtorrent/
+URL:		https://www.rasterbar.com/products/libtorrent/
 Source0:	https://github.com/arvidn/libtorrent/releases/download/libtorrent-%(echo %{version}|sed -e 's,\.,_,g;s,_0$,,')/libtorrent-rasterbar-%{version}.tar.gz
 
 # Upstream patch to fix build with boost 1.78
